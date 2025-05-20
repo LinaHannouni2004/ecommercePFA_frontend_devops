@@ -285,7 +285,7 @@ const colorOptions = [
   { name: "Rose", value: "pink", bg: "bg-pink-400", border: "border-pink-500", text: "text-pink-700" },
 ];
 
-export default function PhonesPage() {
+export default function Page() {
   const { cartItems } = useCart();
   const [colorFilter, setColorFilter] = useState('');
   const [priceFilter, setPriceFilter] = useState('');
