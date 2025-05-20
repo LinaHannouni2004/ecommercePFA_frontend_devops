@@ -1,0 +1,156 @@
+/* Container principal avec fond d'écran */
+
+.loginContainer {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #c9ceff;
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Carte de login transparente */
+
+.loginCard {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    background: transparent;
+    /* Complètement transparent */
+    backdrop-filter: none;
+    /* Pas d'effet de flou */
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    z-index: 1;
+    background-color: white;
+}
+
+
+/* Titre */
+
+.loginTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #6366f1;
+    /* Noir pur */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+
+/* Formulaire */
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+
+/* Groupe de champs */
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+/* Labels */
+
+.inputLabel {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: 6366f1;
+    margin-left: 0.5rem;
+}
+
+
+/* Champs de saisie */
+
+.inputField {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    /* Léger fond pour visibilité */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    /* Bordure visible */
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #000000;
+    /* Texte en noir */
+}
+
+.inputField:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+
+/* Bouton de connexion */
+
+.loginButton {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+}
+
+.loginButton:hover {
+    background-color: #4338ca;
+}
+
+
+/* Lien "Mot de passe oublié" */
+
+.forgotPassword {
+    text-align: right;
+    margin-top: -0.5rem;
+}
+
+.forgotPasswordLink {
+    color: #666;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgotPasswordLink:hover {
+    color: #4f46e5;
+    text-decoration: underline;
+}
+
+
+/* Section d'inscription */
+
+.registerPrompt {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.registerLink {
+    color: #4f46e5;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 0.3rem;
+}
+
+.registerLink:hover {
+    text-decoration: underline;
+}

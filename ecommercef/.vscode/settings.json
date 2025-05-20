@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": null,
+  "tailwindCSS.emmetCompletions": true,
+  "files.autoSave": "afterDelay",
+  "[css]": {
+    "editor.formatOnSave": false
+  }
+}
