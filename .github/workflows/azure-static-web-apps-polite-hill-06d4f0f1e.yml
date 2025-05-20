@@ -20,17 +20,20 @@ jobs:
           submodules: true
           lfs: false
       
-      # Set up Node.js 20.x (required for your dependencies)
+      # Set up Node.js 20.x
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-          cache: 'npm'
       
-      # Install dependencies with npm
+      # Generate lock file if missing and install dependencies
       - name: Install dependencies
-        run: npm install
-        working-directory: ./ecommercef
+        run: |
+          cd ecommercef
+          if [ ! -f package-lock.json ]; then
+            npm install --package-lock-only
+          fi
+          npm ci
       
       # Build the Next.js application
       - name: Build application
