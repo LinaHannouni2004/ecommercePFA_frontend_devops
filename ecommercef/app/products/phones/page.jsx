@@ -299,7 +299,7 @@ export default function PhonesPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const filteredProducts = Phonesroducts.filter(product => {
+  const filteredProducts = PhonesProducts.filter(product => {
     if (searchQuery && !product.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     if (colorFilter && product.color !== colorFilter) return false;
     if (priceFilter === 'under50' && product.price >= 50) return false;
