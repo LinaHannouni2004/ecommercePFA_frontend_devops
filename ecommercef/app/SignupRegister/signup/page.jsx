@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image'; // Make sure this import is at the top
+import Image from 'next/image';
 import styles from './signin.module.css';
 
 export default function LoginPage() {
@@ -16,65 +16,34 @@ export default function LoginPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    try {
-
-      console.log(formData); // Ajoute ça avant le fetch pour vérifier
-
-      const response = await fetch('http://localhost:8081/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData),
-         credentials: 'include',
-         mode: 'cors' 
-      });
-      console.log("Réponse brute:", response);
-  
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-  
-      const data = await response.json();
-      console.log('Login successful', data);
-  
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-  
-      // Redirige selon le rôle
-      if (data.user.role === 'ADMIN') {
-        router.push('/admin');
-      } else {
-        router.push('/products');
-      }
-  
-    } catch (error) {
-      console.error('Login error:', error.message);
-      alert("Erreur d'identification");
-    }
+    console.log("Données du formulaire:", formData); // Juste pour le débogage
+    
+    // Stockage simple dans localStorage (optionnel)
+    localStorage.setItem('user', JSON.stringify({
+      email: formData.email,
+      role: 'USER' // Rôle par défaut
+    }));
+    
+    // Redirection vers la page produits
+    router.push('/products');
   };
-  
-  
 
   return (
     <div className={styles.backgroundContainer}>
-      {/* Background Image - Fixed usage */}
       <Image
-  src="/images/imageauth.jpg"
-  alt="Background"
-  fill
-  priority
-  quality={100} 
-  className={styles.backgroundImage}
-  style={{
-    objectFit: 'cover',
-    opacity: 0.5
-  }}
-/>
+        src="/images/imageauth.jpg"
+        alt="Background"
+        fill
+        priority
+        quality={100} 
+        className={styles.backgroundImage}
+        style={{
+          objectFit: 'cover',
+          opacity: 0.5
+        }}
+      />
       
       <div className={styles.loginContainer}>
         <div className={styles.loginCard}>
@@ -82,9 +51,9 @@ export default function LoginPage() {
           
           <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.inputLabel}
-               style={{color:'#4f46e5'}}
-              >Email</label>
+              <label htmlFor="email" className={styles.inputLabel} style={{color:'#4f46e5'}}>
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -97,9 +66,9 @@ export default function LoginPage() {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="password" className={styles.inputLabel}
-               style={{color:'#4f46e5'}}
-              >Password</label>
+              <label htmlFor="password" className={styles.inputLabel} style={{color:'#4f46e5'}}>
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -116,13 +85,11 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className={styles.forgotPassword}
-           style={{color:'#4f46e5'}}
-          >
+          <div className={styles.forgotPassword} style={{color:'#4f46e5'}}>
             <button 
               onClick={() => router.push('/SignupRegister/forgotpassword')}
               className={styles.forgotPasswordLink}
-               style={{color:'#4f46e5'}}
+              style={{color:'#4f46e5'}}
             >
               Forgot Password?
             </button>
