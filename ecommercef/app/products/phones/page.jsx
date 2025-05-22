@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "../../components/Card_Produit/ProductCard";
 
 // Données produits (tous produits, on filtrera les téléphones)
 const productsData = [
