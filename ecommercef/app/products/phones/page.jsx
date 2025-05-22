@@ -63,7 +63,7 @@ const productsData = [
   },
 ];
 
-// 🟢 Filtrer uniquement les produits téléphones
+// Filtrer uniquement les produits téléphones
 const phoneKeywords = ["iphone", "samsung", "galaxy"];
 const phonesOnly = productsData.filter((product) =>
   phoneKeywords.some((kw) => product.name.toLowerCase().includes(kw))
