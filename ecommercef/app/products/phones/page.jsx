@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "@/components/ProductCard";
 
-// 🟢 Données des produits
+// Données produits (tous produits, on filtrera les téléphones)
 const productsData = [
   {
     id: 1,
@@ -63,15 +63,21 @@ const productsData = [
   },
 ];
 
-export default function ProductListPage() {
+// 🟢 Filtrer uniquement les produits téléphones
+const phoneKeywords = ["iphone", "samsung", "galaxy"];
+const phonesOnly = productsData.filter((product) =>
+  phoneKeywords.some((kw) => product.name.toLowerCase().includes(kw))
+);
+
+export default function PhonesPage() {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(productsData);
+  const [filteredProducts, setFilteredProducts] = useState(phonesOnly);
 
   useEffect(() => {
-    let filtered = productsData;
+    let filtered = phonesOnly;
 
     if (minPrice !== "") {
       filtered = filtered.filter((product) => product.price >= parseFloat(minPrice));
@@ -82,7 +88,9 @@ export default function ProductListPage() {
     }
 
     if (selectedColor !== "") {
-      filtered = filtered.filter((product) => product.color.toLowerCase() === selectedColor.toLowerCase());
+      filtered = filtered.filter(
+        (product) => product.color.toLowerCase() === selectedColor.toLowerCase()
+      );
     }
 
     if (searchTerm.trim() !== "") {
@@ -96,7 +104,7 @@ export default function ProductListPage() {
 
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-6">Liste des produits</h1>
+      <h1 className="text-3xl font-bold mb-6">Téléphones</h1>
 
       {/* Filtres */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -128,7 +136,7 @@ export default function ProductListPage() {
         </select>
         <input
           type="text"
-          placeholder="Rechercher un produit"
+          placeholder="Rechercher un téléphone"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="border p-2 rounded"
@@ -142,7 +150,7 @@ export default function ProductListPage() {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <p className="text-gray-500">Aucun produit ne correspond aux filtres.</p>
+          <p className="text-gray-500">Aucun téléphone ne correspond aux filtres.</p>
         )}
       </div>
     </div>
